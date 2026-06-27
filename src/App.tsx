@@ -1,21 +1,24 @@
-import { BrowserRouter, Routes, Route } from 'react-router'
+import { createBrowserRouter, RouterProvider } from 'react-router'
 import Layout from './components/Layout'
 import Home from './pages/Home'
 import Planets from './pages/Planets'
+import SinglePlanetsPage from './pages/SinglePlanetsPage'
 
-
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Layout />,
+    children: [
+      { index: true, element: <Home /> },
+      { path: 'planets', element: <Planets /> },
+      { path: '/planets/:id', element: <SinglePlanetsPage /> },
+    ],
+  },
+])
 
 function App() {
-
   return (
-   <BrowserRouter>
-     <Routes>
-        <Route path='/' element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path='/planets' element={<Planets />} />
-        </Route>
-     </Routes>
-   </BrowserRouter>
+    <RouterProvider router={router} />
   )
 }
 

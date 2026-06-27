@@ -18,10 +18,14 @@ export default function Home() {
   const activeFighter = fighters[characterIndex]
 
   useEffect(() => {
-    if(pausedSpotlight || fighters.length === 0) return
+    if (pausedSpotlight || fighters.length === 0) return
+
     const characterSpotlightInterval = setInterval(() => {
-      setCharacterIndex((characterIndex) => (characterIndex + 1) % fighters.length)
+      setCharacterIndex(
+        (characterIndex) => (characterIndex + 1) % fighters.length
+      )
     }, 3500)
+
     return () => clearInterval(characterSpotlightInterval)
   }, [pausedSpotlight, fighters.length])
 
