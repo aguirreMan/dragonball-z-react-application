@@ -19,13 +19,9 @@ export interface Planets {
   isDestroyed: boolean
   description: string
   image: string
+  characters?: Character[]
 }
 
 export interface PlanetsResponse {
   items: Planets[]
-}
-
-export interface SinglePlanets extends Planets {
-  characters: Character[]
-
 }
