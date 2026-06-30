@@ -25,3 +25,5 @@ export interface Planets {
 export interface PlanetsResponse {
   items: Planets[]
 }
+
+export type CharacterPowerStats = Pick<Character, 'ki' | 'maxKi' | 'gender' | 'race'>

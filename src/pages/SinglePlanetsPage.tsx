@@ -1,10 +1,12 @@
 import { useParams, Link } from "react-router"
 import { useFetchData } from '@/hooks/useFetchData'
 import type { Planets } from '@/types/types'
+import { BASE_URL } from '@/utils/constants'
+
 
 export default function SinglePlanetsPage() {
   const { id } = useParams()
-  const { data, loading, error } = useFetchData<Planets>(`https://dragonball-api.com/api/planets/${id}`)
+  const { data, loading, error } = useFetchData<Planets>(`${BASE_URL}/planets/${id}`)
 
   if (loading) return <div>Loading...</div>
   if (error) return <div>Error: {error.message}</div>

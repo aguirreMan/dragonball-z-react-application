@@ -3,6 +3,8 @@ import Layout from './components/Layout'
 import Home from './pages/Home'
 import Planets from './pages/Planets'
 import SinglePlanetsPage from './pages/SinglePlanetsPage'
+import Characters from './pages/Characters'
+import SingleCharactersPage from './pages/SingleCharactersPage'
 
 const router = createBrowserRouter([
   {
@@ -12,6 +14,8 @@ const router = createBrowserRouter([
       { index: true, element: <Home /> },
       { path: 'planets', element: <Planets /> },
       { path: '/planets/:id', element: <SinglePlanetsPage /> },
+      { path: 'characters', element: <Characters /> },
+      { path: 'characters/:id', element: <SingleCharactersPage /> },
     ],
   },
 ])
