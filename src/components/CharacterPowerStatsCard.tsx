@@ -1,5 +1,5 @@
 import type { CharacterPowerStats } from '@/types/types'
-import { motion} from 'motion/react'
+import { motion } from 'motion/react'
 
 export default function CharacterPowerStatsCard({ powerStats }: { powerStats: CharacterPowerStats }) {
   return (
