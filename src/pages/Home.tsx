@@ -5,7 +5,6 @@ import type { CharacterResponse } from '@/types/types'
 import { parseKi } from '@/utils/Kiformatter'
 import Loading from '@/components/Loading'
 
-
 export default function Home() {
   const { data, loading, error } = useFetchData<CharacterResponse>('https://dragonball-api.com/api/characters?page=1&limit=4')
 
