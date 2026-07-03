@@ -1,13 +1,14 @@
 import { useFetchData } from '@/hooks/useFetchData'
 import type {  CharacterResponse } from '@/types/types'
-import CharacterGrid from '@/components/CharacterGrid'
+import CharacterGrid from '@/components/Characters/CharacterGrid'
 import { BASE_URL } from '@/utils/constants'
+import Loading from '@/components/Loading'
 
 
 export default function Characters() {
   const { data, loading, error } = useFetchData<CharacterResponse>(`${BASE_URL}/characters?limit=58`)
 
-  if (loading) return <div>Loading...</div>
+  if (loading) return <Loading />
   if (error) return <div>Error: {error.message}</div>
   if(!data) return <div>Characters not found</div>
   return (

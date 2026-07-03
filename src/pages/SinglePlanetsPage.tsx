@@ -2,13 +2,13 @@ import { useParams, Link } from "react-router"
 import { useFetchData } from '@/hooks/useFetchData'
 import type { Planets } from '@/types/types'
 import { BASE_URL } from '@/utils/constants'
-
+import Loading from '@/components/Loading'
 
 export default function SinglePlanetsPage() {
   const { id } = useParams()
   const { data, loading, error } = useFetchData<Planets>(`${BASE_URL}/planets/${id}`)
 
-  if (loading) return <div>Loading...</div>
+  if (loading) return <Loading />
   if (error) return <div>Error: {error.message}</div>
   if (!data) return null
   if (!id) return <div>Planet not found</div>
@@ -47,7 +47,7 @@ export default function SinglePlanetsPage() {
       {/*Characters born  */}
       <section className='mt-16'>
           <h2 className='mb-6 text-2xl font-bold text-primary text-center'>
-            Characters Born Here                {data.characters && (
+            Characters Born Here {data.characters && (
               <span className='ml-2 text-base font-normal text-muted-foreground'>
                 ({data.characters.length})
               </span>

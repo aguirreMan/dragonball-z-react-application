@@ -7,6 +7,8 @@ export interface Character {
   gender: string
   description: string
   image: string
+  affiliation: string
+  originPlanet?: Planets
 }
 
 export interface CharacterResponse {
@@ -25,5 +27,3 @@ export interface Planets {
 export interface PlanetsResponse {
   items: Planets[]
 }
-
-export type CharacterPowerStats = Pick<Character, 'ki' | 'maxKi' | 'gender' | 'race'>

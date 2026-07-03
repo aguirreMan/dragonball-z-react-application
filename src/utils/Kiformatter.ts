@@ -25,8 +25,7 @@ export function parseKi(ki: string | undefined): bigint {
   }
 
   if (result !== undefined) return result
-  const stripDecimals =  cleanString.split('.').join('')
-
+  const stripDecimals = cleanString.split('.').join('')
   return BigInt(stripDecimals)
 }
 
