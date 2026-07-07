@@ -1,8 +1,13 @@
 import type { Character } from '@/types/types'
 import { motion } from 'motion/react'
 import { Link } from 'react-router'
+import { formatKiForDisplay } from '@/utils/Kiformatter'
+
 
 export default function CharacterProfileCard({ character }: { character: Character }) {
+  const kiDisplay = formatKiForDisplay(character.ki)
+  const maxKiDisplay = formatKiForDisplay(character.maxKi)
+
   return (
     <motion.article
       initial={{ opacity: 0, y: 20 }}
@@ -25,11 +30,11 @@ export default function CharacterProfileCard({ character }: { character: Charact
       <dl className='grid grid-cols-2 gap-4 text-sm'>
         <div>
           <dt className='text-muted-foreground mb-4'>KI</dt>
-          <dd className='font-semibold text-primary'>{character.ki}</dd>
+          <dd className='font-semibold text-primary'>{kiDisplay}</dd>
         </div>
         <div>
           <dt className='text-muted-foreground mb-4'>Max Ki</dt>
-          <dd className='font-semibold text-primary'>{character.maxKi}</dd>
+          <dd className='font-semibold text-primary'>{maxKiDisplay}</dd>
         </div>
       </dl>
       {/* Origin planet */}

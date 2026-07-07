@@ -2,11 +2,12 @@ import { useState, useEffect } from 'react'
 import { useMotionValue, animate, AnimatePresence, motion } from 'motion/react'
 import { useFetchData } from '@/hooks/useFetchData'
 import type { CharacterResponse } from '@/types/types'
+import { BASE_URL } from '@/utils/constants'
 import { parseKi } from '@/utils/Kiformatter'
 import Loading from '@/components/Loading'
 
 export default function Home() {
-  const { data, loading, error } = useFetchData<CharacterResponse>('https://dragonball-api.com/api/characters?page=1&limit=4')
+  const { data, loading, error } = useFetchData<CharacterResponse>(`${BASE_URL}/characters?page=1&limit=4`)
 
   const [characterIndex, setCharacterIndex] = useState(0)
   const [pausedSpotlight, setPausedSpotlight] = useState(false)
@@ -46,8 +47,6 @@ export default function Home() {
       unsub()
     }
   }, [activeFighter, power])
-
-
 
   if (loading) return <Loading />
   if(error) return <div>Error: {error.message}</div>

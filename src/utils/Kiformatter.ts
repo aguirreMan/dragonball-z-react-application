@@ -1,7 +1,7 @@
-export function parseKi(ki: string | undefined): bigint {
+export function parseKi(ki: string | undefined): bigint | string {
   if (!ki || ki === '0') return 0n
 
-  const cleanString = ki.trim().toLowerCase()
+  const cleanString = ki.trim().toLowerCase().split(',').join('')
 
   const multipliers: { [key: string]: bigint } = {
     million: 10n ** 6n,
@@ -11,6 +11,10 @@ export function parseKi(ki: string | undefined): bigint {
     quintillion: 10n ** 18n,
     sextillion: 10n ** 21n,
     septillion: 10n ** 24n
+  }
+
+  if (cleanString === 'unknown' || cleanString.includes('googolplex')) {
+    return ki
   }
 
   let result: bigint | undefined
@@ -29,6 +33,12 @@ export function parseKi(ki: string | undefined): bigint {
   return BigInt(stripDecimals)
 }
 
+export function formatKiForDisplay(rawValue: string | undefined): string {
+  const ki = parseKi(rawValue)
+  if (typeof ki === 'bigint') return formatCharacterKi(ki)
+  return ki.includes('UNKNOWN') ? 'Unknown Power' : ki
+}
+
 function parseDecimalsBigInt(numberString: string, multiplier: bigint): bigint {
   try {
     if (!numberString.includes('.')) {
@@ -38,4 +48,8 @@ function parseDecimalsBigInt(numberString: string, multiplier: bigint): bigint {
   } catch {
     return 0n
   }
+}
+
+export function formatCharacterKi(ki: bigint): string {
+  return new Intl.NumberFormat('en-US').format(ki)
 }

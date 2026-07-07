@@ -5,7 +5,6 @@ interface ErrorProps {
   title?: string
   message?: string
   onRetry?: () => void
-
 }
 
 export default function Error({
@@ -31,7 +30,7 @@ export default function Error({
         ))}
         <motion.div
           className='relative flex h-24 w-24 items-center justify-center rounded-full bg-destructive text-4xl font-black
-          text-primary-foreground shadow=[0_0_60px] shadow-destructive'
+          text-primary-foreground shadow-[0_0_60px] shadow-destructive'
           animate={{ scale: [1, 1.08, 1] }}
           transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
         >
