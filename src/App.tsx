@@ -5,6 +5,8 @@ import Planets from './pages/Planets'
 import SinglePlanetsPage from './pages/SinglePlanetsPage'
 import Characters from './pages/Characters'
 import SingleCharactersPage from './pages/SingleCharactersPage'
+import Transformations from './pages/Transformations'
+
 
 const router = createBrowserRouter([
   {
@@ -16,6 +18,7 @@ const router = createBrowserRouter([
       { path: '/planets/:id', element: <SinglePlanetsPage /> },
       { path: 'characters', element: <Characters /> },
       { path: 'characters/:id', element: <SingleCharactersPage /> },
+      { path: 'transformations', element: <Transformations /> },
     ],
   },
 ])

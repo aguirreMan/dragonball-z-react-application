@@ -27,3 +27,10 @@ export interface Planets {
 export interface PlanetsResponse {
   items: Planets[]
 }
+
+export interface Transformations {
+  id: number
+  name: string
+  image: string
+  ki: string
+}
