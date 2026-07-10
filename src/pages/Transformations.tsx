@@ -4,6 +4,7 @@ import Loading from '@/components/Loading'
 import Error from '@/components/Error'
 import type { Transformations } from '@/types/types'
 import { parseKi } from '@/utils/Kiformatter'
+import TransformationCard from '@/components/Transformations/TransformationCard'
 
 export default function Transformations() {
   const { data, loading, error } = useFetchData<Transformations[]>(`${BASE_URL}/transformations`)
@@ -21,17 +22,17 @@ export default function Transformations() {
     return 0
   })
 
+  console.log(transformations)
+
   const maxkiTransformations = transformations.reduce((maxTransformation, transformation) => {
     const kiPower = parseKi(transformation.ki)
     return typeof kiPower === 'bigint' && kiPower > maxTransformation ? kiPower : maxTransformation
   }, 0n)
 
   return (
-    <div className='grid grid-cols-4'>
+    <div className='grid grid-cols-4 gap-2 p-4 m-4'>
      {transformations.map((transformation) => (
-       <div key={transformation.id}>
-         {transformation.name}
-       </div>
+       <TransformationCard key={transformation.id} transformation={transformation} maxKi={maxkiTransformations} />
      ))}
     </div>
   )

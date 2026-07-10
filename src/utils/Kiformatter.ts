@@ -10,7 +10,8 @@ export function parseKi(ki: string | undefined): bigint | string {
     quadrillion: 10n ** 15n,
     quintillion: 10n ** 18n,
     sextillion: 10n ** 21n,
-    septillion: 10n ** 24n
+    septillion: 10n ** 24n,
+    octillion: 10n ** 27n
   }
 
   if (cleanString === 'unknown' || cleanString.includes('googolplex')) {
