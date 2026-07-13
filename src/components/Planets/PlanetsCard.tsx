@@ -2,7 +2,6 @@ import type { Planets } from '@/types/types'
 import { Link } from 'react-router'
 import { motion } from 'motion/react'
 
-
 export default function PlanetsCard({ planet }: { planet: Planets }) {
   return (
     <Link to={`/planets/${planet.id}`} className="block no-underline">

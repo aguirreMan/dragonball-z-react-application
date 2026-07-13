@@ -9,6 +9,7 @@ export interface Character {
   image: string
   affiliation: string
   originPlanet?: Planets
+  transformations?: Transformations[]
 }
 
 export interface CharacterResponse {

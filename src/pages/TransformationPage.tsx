@@ -6,7 +6,7 @@ import type { Transformations } from '@/types/types'
 import { parseKi } from '@/utils/Kiformatter'
 import TransformationCard from '@/components/Transformations/TransformationCard'
 
-export default function Transformations() {
+export default function TransformationsPage() {
   const { data, loading, error } = useFetchData<Transformations[]>(`${BASE_URL}/transformations`)
 
   if (loading) return <Loading />
@@ -21,8 +21,6 @@ export default function Transformations() {
     if(kiB > kiA) return 1
     return 0
   })
-
-  console.log(transformations)
 
   const maxkiTransformations = transformations.reduce((maxTransformation, transformation) => {
     const kiPower = parseKi(transformation.ki)

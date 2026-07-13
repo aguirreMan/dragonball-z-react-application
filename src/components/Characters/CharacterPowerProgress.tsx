@@ -1,20 +1,10 @@
 import * as Progress from '@radix-ui/react-progress'
 import { useEffect } from 'react'
 import { animate, motion, useMotionValue, useTransform } from 'motion/react'
-import { parseKi } from '@/utils/Kiformatter'
 
-export function CharacterPowerProgress({ power, maxPower }: { power: string, maxPower: bigint }) {
-  const currentKi = parseKi(power)
-  const percentage = typeof currentKi === 'bigint' ? Number((currentKi * 100n) / maxPower) : 0
-
+export function CharacterPowerProgress({ percentage }: { percentage: number }) {
   const progress = useMotionValue(0)
   const fillProgressBar = useTransform(progress, value => `${value}%`)
-
-  console.log({
-    name: power,
-    currentKi,
-    percentage,
-  })
 
   useEffect(() => {
     const animation = animate(progress, percentage, {
