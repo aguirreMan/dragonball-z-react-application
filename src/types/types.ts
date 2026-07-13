@@ -35,3 +35,22 @@ export interface Transformations {
   image: string
   ki: string
 }
+
+export interface FighterCardProps {
+  leftSide: Character | null
+  rightSide: Character | null
+  onCharacterSelect: (selection: 'left' | 'right') => void
+}
+
+export interface FighterSlotProps {
+  side: 'left' | 'right'
+  character: Character | null
+  onCharacterSelect: (selection: 'left' | 'right') => void
+}
+
+export interface FighterSelectorProps {
+  characters: Character[]
+  openModal: boolean
+  onOpenChange: (open: boolean) => void
+  onCharacterSelect: (character: Character) => void
+}

@@ -6,7 +6,7 @@ import SinglePlanetsPage from './pages/SinglePlanetsPage'
 import Characters from './pages/Characters'
 import SingleCharactersPage from './pages/SingleCharactersPage'
 import TransformationsPage from './pages/TransformationPage'
-
+import DragonBallArena from './pages/DragonBallArena'
 
 const router = createBrowserRouter([
   {
@@ -19,6 +19,7 @@ const router = createBrowserRouter([
       { path: 'characters', element: <Characters /> },
       { path: 'characters/:id', element: <SingleCharactersPage /> },
       { path: 'transformations', element: <TransformationsPage /> },
+      { path: 'arena', element: <DragonBallArena /> },
     ],
   },
 ])
