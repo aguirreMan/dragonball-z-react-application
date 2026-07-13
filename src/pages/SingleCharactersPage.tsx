@@ -5,10 +5,14 @@ import { BASE_URL } from '@/utils/constants'
 import CharacterProfileCard from '@/components/Characters/CharacterProfileCard'
 import CharacterDescription from '@/components/Characters/CharacterDescription'
 import Loading from '@/components/Loading'
+import TransformationCard from '@/components/Transformations/TransformationCard'
+import { getMaxKi, sortTransformationsByKI } from '@/utils/Transformations'
 
 export default function SingleCharacterPage() {
   const { id } = useParams()
   const { data, loading, error } = useFetchData<Character>(`${BASE_URL}/characters/${id}`)
+  const maxKi = getMaxKi(data?.transformations ?? [])
+  const sortedTransformations = sortTransformationsByKI(data?.transformations ?? [])
 
   if (loading) return <Loading />
   if (error) return <div>Error: {error.message}</div>
@@ -25,6 +29,15 @@ export default function SingleCharacterPage() {
       <div className='space-y-8'>
         <CharacterProfileCard character={data} />
         <CharacterDescription description={data.description} />
+        {sortedTransformations.length ? (
+          <div className='grid grid-cols-2 gap-2 p-4 m-4'>
+            {sortedTransformations.map((transformation) => (
+              <TransformationCard key={transformation.id} transformation={transformation} maxKi={maxKi} />
+            ))}
+          </div>
+        ) : (
+            <p className='text-muted-foreground'>No Transformations Available</p>
+        )}
       </div>
     </div>
   )
