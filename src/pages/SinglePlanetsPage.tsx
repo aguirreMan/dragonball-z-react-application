@@ -3,6 +3,7 @@ import { useFetchData } from '@/hooks/useFetchData'
 import type { Planets } from '@/types/types'
 import { BASE_URL } from '@/utils/constants'
 import Loading from '@/components/Loading'
+import { Badge } from '@/components/shared/Badge'
 
 export default function SinglePlanetsPage() {
   const { id } = useParams()
@@ -27,15 +28,12 @@ export default function SinglePlanetsPage() {
 
         {/*Info */}
         <div className='flex flex-col justify-center'>
-          <span
-            className={`mb-4 inline-flex w-fit items-center gap-2 rounded-full px-3 py-1 text-sm font-bold uppercase tracking-wide
-              ${data.isDestroyed ? 'bg-destructive/15 text-destructive' : 'bg-primary/15 text-primary'}`}
-          >
+          <Badge variant={data.isDestroyed ? 'neutral' : 'primary'} size='lg' className='mb-6'>
             <span
-              className={`h-2 w-2 rounded-full ${data.isDestroyed ? 'bg-destructive' : 'bg-primary'}`}
+              className={`h-3 w-3 shrink-0 rounded-full ${data.isDestroyed ? 'bg-destructive' : 'bg-primary-foreground'}`}
             />
               {data.isDestroyed ? 'Destroyed' : 'Thriving'}
-          </span>
+          </Badge>
 
           <h1 className='mb-4 text-4xl font-bold text-primary'>{data.name}</h1>
           <p className='leading-relaxed text-muted-foreground'>

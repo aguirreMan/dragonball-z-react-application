@@ -1,10 +1,19 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/shared/Card'
 import Button from '@/components/shared/Button'
 
-export default function CharacterDescription({ description, descriptionLimit = 250 }: { description: string, descriptionLimit?: number }) {
+export default function CharacterDescription({ description }: { description: string}) {
   const [expandedCharacterDescription, setExpandedCharacterDescription] = useState(false)
-  const needsTruncation = description.length > descriptionLimit
+  const [isOverFlowing, setIsOverFlowing] = useState(false)
+
+  const descriptionRef = useRef<HTMLParagraphElement>(null)
+
+  useEffect(() => {
+    if (descriptionRef.current) {
+      const hasOverflow = descriptionRef.current.scrollHeight > descriptionRef.current.clientHeight
+      setIsOverFlowing(hasOverflow)
+    }
+  }, [description, expandedCharacterDescription])
 
   return (
     <Card>
@@ -12,14 +21,17 @@ export default function CharacterDescription({ description, descriptionLimit = 2
         <CardTitle>Biografía</CardTitle>
       </CardHeader>
       <CardContent>
-        <p className={`text-sm leading-relaxed m-2 text-muted-foreground ${expandedCharacterDescription ? '' : 'line-clamp-3'}`}>
+        <p
+          ref={descriptionRef}
+          className={`text-base leading-relaxed m-2 text-muted-foreground ${expandedCharacterDescription ? '' : 'line-clamp-3'}`}
+        >
           {description}
         </p>
-        {needsTruncation && (
-          <Button className='bg-transparent text-primary border-0 shadow-none p-0 h-auto hover:bg-transparent'
+        {(isOverFlowing || expandedCharacterDescription) && (
+          <Button className='bg-transparent w-50 text-primary border-0 shadow-none p-0 h-auto hover:bg-transparent'
             onClick={() => setExpandedCharacterDescription(prev => !prev)}
           >
-            {expandedCharacterDescription ? 'Show less' : 'Read more!'}
+            {expandedCharacterDescription ? 'Ver Menos' : 'Leer Más!'}
           </Button>
         )}
       </CardContent>

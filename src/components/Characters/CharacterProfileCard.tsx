@@ -3,7 +3,8 @@ import { motion } from 'motion/react'
 import { Link } from 'react-router'
 import { formatKiForDisplay } from '@/utils/Kiformatter'
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/shared/Card'
-import  Button from '@/components/shared/Button'
+import Button from '@/components/shared/Button'
+import { Badge } from '@/components/shared/Badge'
 
 export default function CharacterProfileCard({ character }: { character: Character }) {
   const kiDisplay = formatKiForDisplay(character.ki)
@@ -21,9 +22,9 @@ export default function CharacterProfileCard({ character }: { character: Charact
             <CardHeader>
               <CardTitle>{character.name}</CardTitle>
             </CardHeader>
-            <span className='absolute right-6 top-6 rounded-2xl bg-secondary px-3 py-1'>
+            <Badge variant='neutral' className='absolute right-6 top-6'>
               {character.affiliation}
-            </span>
+            </Badge>
           </div>
 
           <CardContent>
