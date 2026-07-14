@@ -1,19 +1,28 @@
 import { useState } from 'react'
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/shared/Card'
+import Button from '@/components/shared/Button'
 
-export default function CharacterDescription({ description }: { description: string }) {
+export default function CharacterDescription({ description, descriptionLimit = 250 }: { description: string, descriptionLimit?: number }) {
   const [expandedCharacterDescription, setExpandedCharacterDescription] = useState(false)
+  const needsTruncation = description.length > descriptionLimit
 
   return (
-    <div className='rounded-2xl border border-zinc-200 bg-card p-6 shadow'>
-      <h2 className='text-xl text-center font-semibold text-primary mb-6'>Biografía</h2>
-      <p className={`text-sm leading-relaxed m-2 text-muted-foreground ${expandedCharacterDescription ? '' : 'line-clamp-3'}`}>
-        {description}
-      </p>
-      <button onClick={() => setExpandedCharacterDescription(!expandedCharacterDescription)}
-        className='mt-4 px-4 py-2 text-primary text-sm rounded-xl hover:underline transition-colors cursor-pointer'
-      >
-        {expandedCharacterDescription ? 'Show less' : 'Read more!'}
-      </button>
-    </div>
+    <Card>
+      <CardHeader>
+        <CardTitle>Biografía</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <p className={`text-sm leading-relaxed m-2 text-muted-foreground ${expandedCharacterDescription ? '' : 'line-clamp-3'}`}>
+          {description}
+        </p>
+        {needsTruncation && (
+          <Button className='bg-transparent text-primary border-0 shadow-none p-0 h-auto hover:bg-transparent'
+            onClick={() => setExpandedCharacterDescription(prev => !prev)}
+          >
+            {expandedCharacterDescription ? 'Show less' : 'Read more!'}
+          </Button>
+        )}
+      </CardContent>
+    </Card>
   )
 }
