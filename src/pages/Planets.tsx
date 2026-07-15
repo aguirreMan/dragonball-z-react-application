@@ -14,7 +14,7 @@ export default function Planets() {
 
   return (
     <div>
-      <h1 className='mb-8 text-center text-5xl text-primary font-bold'>Planets</h1>
+      <h1 className='mb-8 text-center text-5xl text-universe-space font-bold'>Planets</h1>
       <PlanetGrid planets={data} />
     </div>
   )

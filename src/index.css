@@ -4,22 +4,27 @@
 :root {
   --background: #0a0a0a;
   --foreground: #f5f5f5;
-
-  --primary: #f97316;
+  --primary: #ff6b00;
   --primary-foreground: #ffffff;
-
-  --secondary: #1f2937;
+  --secondary: #18181b;
   --secondary-foreground: #f5f5f5;
-
+  --accent: #38bdf8;
   --border: #27272a;
-
   --card: #111111;
   --card-foreground: #f5f5f5;
-
   --muted: #71717a;
   --muted-foreground: #a1a1aa;
-
   --destructive: #dc2626;
+}
+
+/*Dragon Ball Z tokents */
+:root {
+  --universe-space: #1e3a8a;
+  --transformation-gold: #facc15;
+}
+
+.transform-glow {
+  box-shadow: 0 0 15px color-mix(in srgb, var(--transformation-gold) 35%, transparent);
 }
 
 @theme {
@@ -35,6 +40,8 @@
     --color-muted: var(--muted);
     --color-muted-foreground: var(--muted-foreground);
     --color-destructive: var(--destructive);
+    --color-universe-space: var(--universe-space);
+    --color-transformation-gold: var(--transformation-gold);
 }
 
 * {

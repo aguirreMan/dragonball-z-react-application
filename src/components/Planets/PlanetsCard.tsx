@@ -10,13 +10,13 @@ export default function PlanetsCard({ planet }: { planet: Planets }) {
     <motion.article whileHover={{ scale: 1.05, y: -5}} transition={{ duration: 0.2 }}>
       <Card>
         <CardHeader>
-          <CardTitle>{planet.name}</CardTitle>
+          <CardTitle className='text-universe-space'>{planet.name}</CardTitle>
         </CardHeader>
         <CardContent>
           <img src={planet.image} alt={planet.name} className='mb-4 h-64 w-full rounded-lg object-cover' />
         </CardContent>
         <CardFooter>
-          <Button asChild className='px-18 bg-secondary'>
+          <Button asChild className='px-18 bg-secondary hover:bg-universe-space'>
             <Link to={`/planets/${planet.id}`}>
               Ver Planeta →
             </Link>
