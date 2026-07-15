@@ -4,7 +4,6 @@ import { motion } from 'motion/react'
 import Button from '@/components/shared/Button'
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/shared/Card'
 
-
 export default function PlanetsCard({ planet }: { planet: Planets }) {
   return (
     <motion.article whileHover={{ scale: 1.05, y: -5}} transition={{ duration: 0.2 }}>
