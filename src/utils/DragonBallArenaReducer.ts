@@ -1,7 +1,7 @@
 import type { Character } from '@/types/types'
 import { parseKi } from '@/utils/Kiformatter'
 
-type DragonBallArenaPhase = 'selecting_characters' | 'characters_ready' | 'comparing_characters' | 'picking_winner'
+export type DragonBallArenaPhase = 'selecting_characters' | 'characters_ready' | 'comparing_characters' | 'picking_winner'
 
 export interface DragonBallArenaState {
   leftSideCharacter: Character | null
@@ -9,6 +9,7 @@ export interface DragonBallArenaState {
   activeSlot: 'left' | 'right' | null
   phase: DragonBallArenaPhase
   winner: 'left' | 'right' | null
+  isUpset: boolean | null
 }
 
 export const initialDragonBallArenaState: DragonBallArenaState = {
@@ -17,6 +18,7 @@ export const initialDragonBallArenaState: DragonBallArenaState = {
   activeSlot: null,
   phase: 'selecting_characters',
   winner: null,
+  isUpset: null,
 }
 
 type DragonBallArenaAction =
@@ -24,8 +26,20 @@ type DragonBallArenaAction =
   | { type: 'SELECT_CHARACTER';  character: Character | null }
   | { type: 'SWAP_CHARACTERS' }
   | { type: 'START_BATTLE'}
-  | { type: 'PICK_WINNER' }
-  | { type: 'RESET_ARENA'}
+  | { type: 'PICK_WINNER'; luck: number }
+  | { type: 'RESET_ARENA' }
+
+
+export function decideWinner(left: bigint, right: bigint, luck: number): { winner: 'left' | 'right'; isUpset: boolean } {
+  const strongerIsLeft = left > right
+   const [strong, weak] = strongerIsLeft ? [left, right] : [right, left]
+   const ratio = Number(weak) / Number(strong)
+   const isUpset = luck < ratio * 0.4
+   const winner = isUpset
+     ? (strongerIsLeft ? 'right' : 'left')
+     : (strongerIsLeft ? 'left' : 'right')
+   return { winner, isUpset }
+}
 
 export function dragonBallArenaReducer(state: DragonBallArenaState, action: DragonBallArenaAction): DragonBallArenaState {
   switch (action.type) {
@@ -41,7 +55,11 @@ export function dragonBallArenaReducer(state: DragonBallArenaState, action: Drag
       }
       const leftSideCharacter = state.activeSlot === 'left' ? action.character : state.leftSideCharacter
       const rightSideCharacter = state.activeSlot === 'right' ? action.character : state.rightSideCharacter
-      return { ...state, leftSideCharacter, rightSideCharacter }
+      const charactersReady = leftSideCharacter !== null && rightSideCharacter !== null
+      if(charactersReady) {
+        return { ...state, leftSideCharacter, rightSideCharacter, activeSlot: null, phase: 'characters_ready' }
+      }
+      return { ...state, leftSideCharacter, rightSideCharacter, activeSlot: null }
     }
     case 'SWAP_CHARACTERS': {
       const leftSideCharacter = state.rightSideCharacter
@@ -66,8 +84,8 @@ export function dragonBallArenaReducer(state: DragonBallArenaState, action: Drag
         return state
       }
 
-      const winner = leftSideCharacterPower > rightSideCharacterPower ? 'left' : 'right'
-      return { ...state, phase: 'picking_winner', winner, activeSlot: null }
+      const { winner, isUpset } = decideWinner(leftSideCharacterPower, rightSideCharacterPower, action.luck)
+      return { ...state, phase: 'picking_winner', winner, isUpset, activeSlot: null }
     }
 
     case 'RESET_ARENA': {

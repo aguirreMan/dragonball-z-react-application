@@ -24,7 +24,8 @@ export function useDragonBallArena() {
   }
 
   function pickWinner() {
-    dispatch({ type: 'PICK_WINNER' })
+    const randomLuck = Math.random()
+    dispatch({ type: 'PICK_WINNER', luck: randomLuck })
   }
 
   function resetArena() {
