@@ -1,12 +1,18 @@
 import { useState, useEffect, useRef } from 'react'
 
-export function useWinnerReveal() {
+interface UseWinnerRevealProps {
+  onStartBattle: () => void
+  onPickWinner: (luck: number) => void
+}
+
+export function useWinnerReveal({ onStartBattle, onPickWinner }: UseWinnerRevealProps) {
   const [winnerReveal, setWinnerReveal] = useState(false)
   const [isAnimating, setIsAnimating] = useState(false)
   const reavealTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   function revealWinner() {
     setIsAnimating(true)
+    onStartBattle()
 
     if (reavealTimer.current) {
       clearTimeout(reavealTimer.current)
@@ -14,6 +20,9 @@ export function useWinnerReveal() {
     reavealTimer.current = setTimeout(() => {
       setIsAnimating(false)
       setWinnerReveal(true)
+
+      const luck = Math.random()
+      onPickWinner(luck)
     }, 5000)
   }
 

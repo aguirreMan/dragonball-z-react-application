@@ -1,7 +1,16 @@
 import Button from '@/components/shared/Button'
-import type { ArenaControllerProps } from '@/types/types'
+import type { DragonBallArenaPhase } from '@/utils/DragonBallArenaReducer'
 
-export default function ArenaController({phase, winner, onStartBattle, onPickWinner, onSwap, onReset}: ArenaControllerProps) {
+interface ArenaControllerProps {
+  phase: DragonBallArenaPhase
+  winner: 'left' | 'right' | null
+  onStartBattle: () => void
+  onSwap: () => void
+  onReset: () => void
+}
+
+export default function ArenaController({ phase, winner, onStartBattle, onSwap, onReset }: ArenaControllerProps) {
+
   return (
     <div className='flex justify-center gap-4'>
       {phase === 'characters_ready' && (
@@ -16,7 +25,7 @@ export default function ArenaController({phase, winner, onStartBattle, onPickWin
       )}
 
       {phase === 'comparing_characters' && (
-        <Button className='px-4 py-4 font-bold text-foreground bg-destructive hover:bg-destructive/80' onClick={onPickWinner}>
+        <Button disabled={true} className='px-4 py-4 font-bold text-foreground bg-destructive hover:bg-destructive/80'>
           Pick Winner
         </Button>
       )}

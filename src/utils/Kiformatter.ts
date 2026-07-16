@@ -1,7 +1,12 @@
-export function parseKi(ki: string | undefined): bigint | string {
+export function parseKi(ki: string | undefined): bigint | null{
   if (!ki || ki === '0') return 0n
 
-  const cleanString = ki.trim().toLowerCase().split(',').join('')
+  const cleanString = ki
+      .trim()
+      .toLowerCase()
+      .split(',')
+      .join('')
+      .replace('septllion', 'septillion')
 
   const multipliers: { [key: string]: bigint } = {
     million: 10n ** 6n,
@@ -15,7 +20,7 @@ export function parseKi(ki: string | undefined): bigint | string {
   }
 
   if (cleanString === 'unknown' || cleanString.includes('googolplex')) {
-    return ki
+    return null
   }
 
   let result: bigint | undefined
@@ -36,8 +41,10 @@ export function parseKi(ki: string | undefined): bigint | string {
 
 export function formatKiForDisplay(rawValue: string | undefined): string {
   const ki = parseKi(rawValue)
-  if (typeof ki === 'bigint') return formatCharacterKi(ki)
-  return ki.includes('UNKNOWN') ? 'Unknown Power' : ki
+  if (typeof ki === 'bigint') {
+    return formatCharacterKi(ki)
+  }
+  return 'Unknown Power'
 }
 
 function parseDecimalsBigInt(numberString: string, multiplier: bigint): bigint {
@@ -83,7 +90,7 @@ export function formatCharacterKi(ki: bigint): string {
   return new Intl.NumberFormat('en-US').format(Number(ki))
 }
 
-function getBigIntLog10(value: bigint): number {
+export function getBigIntLog10(value: bigint): number {
   if (value <= 0n) return 0
 
   const valueString = value.toString()

@@ -1,5 +1,5 @@
 import type { Character } from '@/types/types'
-import { parseKi } from '@/utils/Kiformatter'
+import { parseKi, getBigIntLog10 } from '@/utils/Kiformatter'
 
 export type DragonBallArenaPhase = 'selecting_characters' | 'characters_ready' | 'comparing_characters' | 'picking_winner'
 
@@ -32,9 +32,14 @@ type DragonBallArenaAction =
 
 export function decideWinner(left: bigint, right: bigint, luck: number): { winner: 'left' | 'right'; isUpset: boolean } {
   const strongerIsLeft = left > right
-   const [strong, weak] = strongerIsLeft ? [left, right] : [right, left]
-   const ratio = Number(weak) / Number(strong)
-   const isUpset = luck < ratio * 0.4
+  const [strong, weak] = strongerIsLeft ? [left, right] : [right, left]
+  const logStrongCharacter = getBigIntLog10(strong)
+  const logWeakCharacter = getBigIntLog10(weak)
+
+  const closeness = logStrongCharacter > 0 ? Math.max(logWeakCharacter / logStrongCharacter, 0.05) : 0
+  const isUpset = luck < closeness * 0.4
+
+
    const winner = isUpset
      ? (strongerIsLeft ? 'right' : 'left')
      : (strongerIsLeft ? 'left' : 'right')

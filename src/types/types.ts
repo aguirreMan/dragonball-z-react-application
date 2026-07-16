@@ -1,5 +1,3 @@
-import type { DragonBallArenaPhase } from '@/utils/DragonBallArenaReducer'
-
 export interface Character {
   id: number
   name: string
@@ -55,13 +53,4 @@ export interface FighterSelectorProps {
   openModal: boolean
   onOpenChange: (open: boolean) => void
   onCharacterSelect: (character: Character) => void
-}
-
-export interface ArenaControllerProps {
-  phase: DragonBallArenaPhase
-  winner: 'left' | 'right' | null
-  onStartBattle: () => void
-  onPickWinner: () => void
-  onSwap: () => void
-  onReset: () => void
 }
