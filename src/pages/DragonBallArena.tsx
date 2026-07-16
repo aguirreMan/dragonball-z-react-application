@@ -6,12 +6,9 @@ import type { CharacterResponse } from '@/types/types'
 import { BASE_URL } from '@/utils/constants'
 import ArenaController from '@/components/Arena/ArenaController'
 
-
 export default function DragonBallArena() {
   const { data } = useFetchData<CharacterResponse>(`${BASE_URL}/characters?limit=58`)
   const arena = useDragonBallArena()
-
-  console.log(arena.phase)
 
   return (
     <section className='mx-auto max-w-5xl px-4 py-10 space-y-10'>

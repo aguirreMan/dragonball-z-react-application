@@ -1,15 +1,5 @@
 import Button from '@/components/shared/Button'
-import type { DragonBallArenaPhase } from '@/utils/DragonBallArenaReducer'
-
-
-interface ArenaControllerProps {
-  phase: DragonBallArenaPhase
-  winner: 'left' | 'right' | null
-  onStartBattle: () => void
-  onPickWinner: () => void
-  onSwap: () => void
-  onReset: () => void
-}
+import type { ArenaControllerProps } from '@/types/types'
 
 export default function ArenaController({phase, winner, onStartBattle, onPickWinner, onSwap, onReset}: ArenaControllerProps) {
   return (

@@ -1,9 +1,8 @@
 import { useFetchData } from '@/hooks/useFetchData'
-import type {  CharacterResponse } from '@/types/types'
+import type { CharacterResponse } from '@/types/types'
 import CharacterGrid from '@/components/Characters/CharacterGrid'
 import { BASE_URL } from '@/utils/constants'
 import Loading from '@/components/Loading'
-
 
 export default function Characters() {
   const { data, loading, error } = useFetchData<CharacterResponse>(`${BASE_URL}/characters?limit=58`)
