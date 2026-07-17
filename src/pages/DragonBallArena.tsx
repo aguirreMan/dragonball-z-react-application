@@ -2,7 +2,7 @@ import FighterCards from '@/components/Arena/FighterCards'
 import FighterSelector from '@/components/Arena/FighterSelector'
 import { useFetchData } from '@/hooks/useFetchData'
 import { useDragonBallArena } from '@/hooks/useDragonBallArena'
-import { useWinnerReveal } from '@/hooks/useWinnerReveal'
+import { useBattleCoordinator } from '@/hooks/useBattleCoordinator'
 import type { CharacterResponse } from '@/types/types'
 import { BASE_URL } from '@/utils/constants'
 import ArenaController from '@/components/Arena/ArenaController'
@@ -19,7 +19,7 @@ export default function DragonBallArena() {
     return maxKi !== null && maxKi > 0n
   }) ?? []
 
-  const winnerReveal = useWinnerReveal({
+  const winnerReveal = useBattleCoordinator({
       onStartBattle: arena.startBattle,
       onPickWinner: arena.pickWinner
     })
