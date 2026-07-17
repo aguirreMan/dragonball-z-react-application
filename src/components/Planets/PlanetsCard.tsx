@@ -1,7 +1,7 @@
 import type { Planets } from '@/types/types'
 import { Link } from 'react-router'
 import { motion } from 'motion/react'
-import Button from '@/components/shared/Button'
+import { Button} from '@/components/shared/Button'
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/shared/Card'
 
 export default function PlanetsCard({ planet }: { planet: Planets }) {

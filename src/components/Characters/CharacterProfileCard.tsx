@@ -3,7 +3,7 @@ import { motion } from 'motion/react'
 import { Link } from 'react-router'
 import { formatKiForDisplay } from '@/utils/Kiformatter'
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/shared/Card'
-import Button from '@/components/shared/Button'
+import { Button } from '@/components/shared/Button'
 import { AffiliationBadge } from '@/components/Characters/AffiliationBadge'
 
 export default function CharacterProfileCard({ character }: { character: Character }) {

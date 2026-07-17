@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/shared/Card'
-import Button from '@/components/shared/Button'
+import { Button } from '@/components/shared/Button'
 
 export default function CharacterDescription({ description }: { description: string}) {
   const [expandedCharacterDescription, setExpandedCharacterDescription] = useState(false)

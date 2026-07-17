@@ -14,7 +14,10 @@ export default function DragonBallArena() {
   const { data } = useFetchData<CharacterResponse>(`${BASE_URL}/characters?limit=58`)
   const arena = useDragonBallArena()
 
-  const battleRoster = data?.items.filter((character) => parseKi(character.maxKi) !== null) ?? []
+  const battleRoster = data?.items.filter((character) => {
+    const maxKi = parseKi(character.maxKi)
+    return maxKi !== null && maxKi > 0n
+  }) ?? []
 
   const winnerReveal = useWinnerReveal({
       onStartBattle: arena.startBattle,
