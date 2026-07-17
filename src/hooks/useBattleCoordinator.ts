@@ -2,12 +2,10 @@ import { useState, useEffect, useRef } from 'react'
 
 interface UseBattleCoordinatorProps {
   onStartBattle: () => void
-  onPickWinner: (luck: number) => void
+  onPickWinner: () => void
 }
 
 export function useBattleCoordinator({ onStartBattle, onPickWinner }: UseBattleCoordinatorProps) {
-  const [winnerReveal, setWinnerReveal] = useState(false)
-  const [isAnimating, setIsAnimating] = useState(false)
   const [countDown, setCountDown] = useState(5)
 
   const countdownInterval = useRef<ReturnType<typeof setInterval> | null>(null)
@@ -18,12 +16,7 @@ export function useBattleCoordinator({ onStartBattle, onPickWinner }: UseBattleC
       clearInterval(countdownInterval.current)
       countdownInterval.current = null
     }
-
-    setIsAnimating(false)
-    setWinnerReveal(true)
-
-    const luck = Math.random()
-    onPickWinner(luck)
+    onPickWinner()
   }
 
   function handleTimer() {
@@ -35,10 +28,9 @@ export function useBattleCoordinator({ onStartBattle, onPickWinner }: UseBattleC
     }
   }
 
-    function revealWinner() {
+    function startFight() {
       tickerRef.current = 5
       setCountDown(5)
-      setIsAnimating(true)
       onStartBattle()
 
       if (countdownInterval.current) clearInterval(countdownInterval.current)
@@ -46,9 +38,7 @@ export function useBattleCoordinator({ onStartBattle, onPickWinner }: UseBattleC
       countdownInterval.current = setInterval(handleTimer, 1000)
     }
 
-    function resetReveal() {
-      setWinnerReveal(false)
-      setIsAnimating(false)
+    function resetFight() {
       tickerRef.current = 5
       setCountDown(5)
       if (countdownInterval.current) clearInterval(countdownInterval.current)
@@ -60,5 +50,5 @@ export function useBattleCoordinator({ onStartBattle, onPickWinner }: UseBattleC
       }
     }, [])
 
-    return { winnerReveal, isAnimating, revealWinner, resetReveal, countDown }
+    return { startFight, resetFight, countDown }
 }

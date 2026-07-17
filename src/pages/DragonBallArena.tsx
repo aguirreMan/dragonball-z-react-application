@@ -1,14 +1,13 @@
-import FighterCards from '@/components/Arena/FighterCards'
-import FighterSelector from '@/components/Arena/FighterSelector'
 import { useFetchData } from '@/hooks/useFetchData'
 import { useDragonBallArena } from '@/hooks/useDragonBallArena'
 import { useBattleCoordinator } from '@/hooks/useBattleCoordinator'
 import type { CharacterResponse } from '@/types/types'
 import { BASE_URL } from '@/utils/constants'
+import { parseKi } from '@/utils/Kiformatter'
+import FighterCards from '@/components/Arena/FighterCards'
+import FighterSelector from '@/components/Arena/FighterSelector'
 import ArenaController from '@/components/Arena/ArenaController'
 import ArenaWinnerModal from '@/components/Arena/ArenaWinnerModal'
-import { parseKi } from '@/utils/Kiformatter'
-
 
 export default function DragonBallArena() {
   const { data } = useFetchData<CharacterResponse>(`${BASE_URL}/characters?limit=58`)
@@ -19,14 +18,14 @@ export default function DragonBallArena() {
     return maxKi !== null && maxKi > 0n
   }) ?? []
 
-  const winnerReveal = useBattleCoordinator({
-      onStartBattle: arena.startBattle,
-      onPickWinner: arena.pickWinner
-    })
+  const battleCoordinator = useBattleCoordinator({
+    onStartBattle: arena.startBattle,
+    onPickWinner: arena.pickWinner,
+  })
 
   function resetArena() {
     arena.resetArena()
-    winnerReveal.resetReveal()
+    battleCoordinator.resetFight()
   }
 
   const winnerCharacter = arena.winner === 'left'
@@ -51,7 +50,7 @@ export default function DragonBallArena() {
           <ArenaController
             phase={arena.phase}
             winner={arena.winner}
-            onStartBattle={winnerReveal.revealWinner}
+            onStartBattle={battleCoordinator.startFight}
             onSwap={arena.swapCharacters}
             onReset={resetArena}
           />
@@ -66,8 +65,9 @@ export default function DragonBallArena() {
       />
       <ArenaWinnerModal
         winner={winnerCharacter}
-        isOpen={arena.phase === 'picking_winner'}
+        isOpen={arena.phase === 'comparing_characters' || arena.phase === 'picking_winner'}
         onClose={resetArena}
+        countDown={battleCoordinator.countDown}
       />
     </section>
   )

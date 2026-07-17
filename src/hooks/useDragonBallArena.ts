@@ -20,7 +20,6 @@ export function useDragonBallArena() {
 
   function startBattle() {
     dispatch({ type: 'START_BATTLE' })
-
   }
 
   function pickWinner() {

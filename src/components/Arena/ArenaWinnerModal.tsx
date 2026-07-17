@@ -5,9 +5,10 @@ interface ArenaWinnerModalProps {
   winner: Character | null
   isOpen: boolean
   onClose: () => void
+  countDown: number
 }
 
-export default function ArenaWinnerModal({ winner, isOpen, onClose }: ArenaWinnerModalProps) {
+export default function ArenaWinnerModal({ winner, isOpen, onClose, countDown }: ArenaWinnerModalProps) {
   if (!winner) return null
 
   return (
