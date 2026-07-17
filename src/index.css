@@ -15,6 +15,17 @@
   --muted: #71717a;
   --muted-foreground: #a1a1aa;
   --destructive: #dc2626;
+
+  /* Fighter affiliations */
+   --affiliation-z-fighter: #F59E08;
+   --affiliation-frieza-army: #9333ea;
+   --affiliation-freelancer: #0ea5e9;
+   --affiliation-other: #71717a;
+   --affiliation-villain: #dc2626;
+   --affiliation-beerus: #7c3aed;
+   --affiliation-pride-troopers: #2563eb;
+   --affiliation-vermoud: #db2777;
+
 }
 
 /*Dragon Ball Z tokents */
@@ -42,6 +53,15 @@
     --color-destructive: var(--destructive);
     --color-universe-space: var(--universe-space);
     --color-transformation-gold: var(--transformation-gold);
+
+    --color-affiliation-z-fighter: var(--affiliation-z-fighter);
+    --color-affiliation-frieza-army: var(--affiliation-frieza-army);
+    --color-affiliation-freelancer: var(--affiliation-freelancer);
+    --color-affiliation-other: var(--affiliation-other);
+    --color-affiliation-villain: var(--affiliation-villain);
+    --color-affiliation-beerus: var(--affiliation-beerus);
+    --color-affiliation-pride-troopers: var(--affiliation-pride-troopers);
+    --color-affiliation-vermoud: var(--affiliation-vermoud);
 }
 
 * {
