@@ -5,7 +5,7 @@ const navLinks = [
   { to: '/characters', label: 'Characters' },
   { to: '/planets', label: 'Planets' },
   { to: '/transformations', label: 'Transformations' },
-  { to: '/arena', label: 'Arena Club' }
+  { to: '/arena', label: 'Arena' }
 ]
 
 export default function Navbar() {

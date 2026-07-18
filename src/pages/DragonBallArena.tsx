@@ -7,7 +7,7 @@ import { parseKi } from '@/utils/Kiformatter'
 import FighterCards from '@/components/Arena/FighterCards'
 import FighterSelector from '@/components/Arena/FighterSelector'
 import ArenaController from '@/components/Arena/ArenaController'
-import ArenaWinnerModal from '@/components/Arena/ArenaWinnerModal'
+import ArenaBattleModal from '@/components/Arena/ArenaBattleModal'
 
 export default function DragonBallArena() {
   const { data } = useFetchData<CharacterResponse>(`${BASE_URL}/characters?limit=58`)
@@ -27,13 +27,6 @@ export default function DragonBallArena() {
     arena.resetArena()
     battleCoordinator.resetFight()
   }
-
-  const winnerCharacter = arena.winner === 'left'
-    ? arena.leftSideCharacter
-    : arena.winner === 'right'
-    ? arena.rightSideCharacter
-    : null
-
   return (
     <section className='mx-auto max-w-5xl px-4 py-10 space-y-10'>
       <h1 className='text-primary text-4xl md:text-5xl font-black text-center tracking-tight'>
@@ -63,8 +56,11 @@ export default function DragonBallArena() {
         onOpenChange={() => arena.setActiveSlot(null)}
         onCharacterSelect={arena.selectCharacter}
       />
-      <ArenaWinnerModal
-        winner={winnerCharacter}
+      <ArenaBattleModal
+        left={arena.leftSideCharacter}
+        right={arena.rightSideCharacter}
+        winnerSide={arena.winner}
+        isUpset={arena.isUpset}
         isOpen={arena.phase === 'comparing_characters' || arena.phase === 'picking_winner'}
         onClose={resetArena}
         countDown={battleCoordinator.countDown}

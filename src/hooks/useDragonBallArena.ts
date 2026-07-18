@@ -1,6 +1,5 @@
 import { dragonBallArenaReducer, initialDragonBallArenaState } from '@/utils/DragonBallArenaReducer'
 import type { Character } from '@/types/types'
-
 import { useReducer } from 'react'
 
 export function useDragonBallArena() {
@@ -37,6 +36,7 @@ export function useDragonBallArena() {
     activeSlot: state.activeSlot,
     phase: state.phase,
     winner: state.winner,
+    isUpset: state.isUpset,
     pickWinner,
     isModalOpen: state.activeSlot !== null,
     setActiveSlot,
