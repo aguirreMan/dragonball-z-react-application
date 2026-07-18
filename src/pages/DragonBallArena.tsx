@@ -68,6 +68,7 @@ export default function DragonBallArena() {
         isOpen={arena.phase === 'comparing_characters' || arena.phase === 'picking_winner'}
         onClose={resetArena}
         countDown={battleCoordinator.countDown}
+        phase={arena.phase}
       />
     </section>
   )
