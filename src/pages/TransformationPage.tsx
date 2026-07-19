@@ -6,7 +6,6 @@ import type { Transformations } from '@/types/types'
 import TransformationCard from '@/components/Transformations/TransformationCard'
 import { getMaxKi, sortTransformationsByKI } from '@/utils/Transformations'
 
-
 export default function TransformationsPage() {
   const { data, loading, error } = useFetchData<Transformations[]>(`${BASE_URL}/transformations`)
   const maxKi = getMaxKi(data ?? [])
@@ -16,10 +15,15 @@ export default function TransformationsPage() {
   if (error) return <Error />
 
   return (
+    <>
+    <h1 className='mb-8 text-center text-5xl font-bold text-transformation-gold'>
+      Transformation Leaderboard
+    </h1>
     <div className='grid grid-cols-4 gap-2 p-4 m-4'>
      {sortedTransformations.map((transformation) => (
        <TransformationCard key={transformation.id} transformation={transformation} maxKi={maxKi} />
      ))}
     </div>
+    </>
   )
 }

@@ -23,7 +23,9 @@ export default function CharacterCard({ character }: { character: Character }) {
           <img src={character.image} alt={character.name} className='mb-4 h-64 w-full rounded-lg object-contain' />
         </CardContent>
         <CardFooter>
-          <Button asChild className='mt-auto inline-block text-secondary font-semibold hover:underline text-center w-full'>
+          <Button asChild className='mt-auto inline-block bg-secondary text-primary font-semibold
+            hover:bg-secondary/80 text-center w-full border border-primary/20 hover:border-primary/60'
+          >
             <Link to={`/characters/${character.id}`}>View Character →</Link>
           </Button>
         </CardFooter>

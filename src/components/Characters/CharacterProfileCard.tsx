@@ -32,19 +32,19 @@ export default function CharacterProfileCard({ character }: { character: Charact
           <CardContent>
             <dl className='grid grid-cols-2 gap-6 text-center'>
               <div className='space-y-1'>
-                <dt className='text-sm text-muted-foreground'>Race</dt>
+                <dt className='text-base font-medium text-foreground'>Race</dt>
                 <dd className='text-lg font-semibold text-primary'>{character.race}</dd>
               </div>
               <div className='space-y-1'>
-                <dt className='text-sm text-muted-foreground'>Gender</dt>
+                <dt className='text-base font-medium text-foreground'>Gender</dt>
                 <dd className='text-lg font-semibold text-primary'>{character.gender}</dd>
               </div>
               <div className='space-y-1'>
-                <dt className='text-sm text-muted-foreground'>KI</dt>
+                <dt className='text-base font-medium text-foreground'>K I</dt>
                 <dd className='text-lg font-semibold text-primary'>{kiDisplay}</dd>
               </div>
               <div className='space-y-1'>
-                <dt className='text-sm text-muted-foreground'>Max KI</dt>
+                <dt className='text-base font-medium text-foreground'>Max KI</dt>
                 <dd className='text-lg font-semibold text-primary'>{maxKiDisplay}</dd>
               </div>
             </dl>
@@ -54,20 +54,17 @@ export default function CharacterProfileCard({ character }: { character: Charact
             <CardFooter>
               <div className='w-full space-y-4'>
                 <div className='text-center space-y-2'>
-                  <h3 className='text-sm font-medium text-muted-foreground'>Origin Planet</h3>
-                  <p className='text-2xl font-bold text-primary'>{character.originPlanet.name}</p>
+                  <h3 className='text-base font-medium text-foreground'>Origin Planet</h3>
+                  <p className='text-2xl font-bold text-universe-space'>{character.originPlanet.name}</p>
                 </div>
-                <Button asChild className='auto bg-secondary'>
-                  <Link to={`/planets/${character.originPlanet.id}`} className='flex items-center gap-6'>
+                <Button asChild className='bg-secondary border border-universe-space/20 hover:border-universe-space/50'>
+                  <Link to={`/planets/${character.originPlanet.id}`} className='inline-flex items-center gap-4'>
                     <img
                       src={character.originPlanet.image}
                       alt={character.originPlanet.name}
-                      className='h-12 w-12 rounded-full object-cover'
+                      className='h-10 w-10 rounded-full object-cover'
                     />
-                    <span className='flex-1 text-left text-foreground'>View Planet Details</span>
-                    {character.originPlanet.isDestroyed && (
-                      <span className='text-xs font-semibold text-destructive'>Destroyed</span>
-                    )}
+                    <span>Explore Planet</span>
                   </Link>
                 </Button>
               </div>
