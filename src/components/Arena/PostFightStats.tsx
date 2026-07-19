@@ -1,5 +1,5 @@
 import type { Character } from '@/types/types'
-import { calculatePowerScalePercentage, parseKi } from '@/utils/Kiformatter'
+import { parseKi, calculateArenaProgressBar } from '@/utils/Kiformatter'
 import PostFightFighter from './PostFightFighter'
 import { motion } from 'motion/react'
 
@@ -18,8 +18,9 @@ export default function PostFightStats({ left, right, winnerSide, isUpset }: Pos
   const rightMaxPower = parseKi(right.maxKi) ?? 0n
   const maxPower = leftMaxPower > rightMaxPower ? leftMaxPower : rightMaxPower
 
-  const leftPowerPercentage = calculatePowerScalePercentage(leftMaxPower, maxPower)
-  const rightPowerPercentage = calculatePowerScalePercentage(rightMaxPower, maxPower)
+  const leftPowerPercentage = calculateArenaProgressBar(leftMaxPower, maxPower)
+  const rightPowerPercentage = calculateArenaProgressBar(rightMaxPower, maxPower)
+
 
   return (
     <div className='relative flex w-full items-center justify-center gap-6 md:gap-10'>

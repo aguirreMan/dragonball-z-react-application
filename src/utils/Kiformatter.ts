@@ -105,6 +105,13 @@ export function calculatePowerScalePercentage(current: bigint, max: bigint): num
   return (getBigIntLog10(current) / getBigIntLog10(max)) * 100
 }
 
+// arena fight function that illustrates the power scale percentage of two fighters
+export function calculateArenaProgressBar(current: bigint, max: bigint): number {
+  if (current <= 0n || max <= 0n) return 0
+  const ratio = Number(current) / Number(max)
+  return Math.min(Math.max(ratio * 100, 0.5), 100)
+}
+
 //display percentages
 export function formatPowerLevelsDisplay(current: bigint, max: bigint): string {
   return `${Math.floor(calculatePowerScalePercentage(current, max))}%`
