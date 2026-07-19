@@ -27,7 +27,7 @@ function CardHeader({ children, className, ...props }: CardProps) {
 
 function CardTitle({ children, className, ...props }: CardTitleProps) {
   return (
-    <h2 className={cn('text-2xl text-center leading-none font-bold text-primary p-6 pb-4', className)} {...props}>
+    <h2 className={cn('text-2xl text-center leading-none font-bold text-foreground p-6 pb-4', className)} {...props}>
       {children}
     </h2>
   )

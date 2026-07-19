@@ -20,7 +20,7 @@ export default function CharacterProfileCard({ character }: { character: Charact
         <article>
           <div className='relative'>
             <CardHeader>
-              <CardTitle>{character.name}</CardTitle>
+              <CardTitle className='text-primary'>{character.name}</CardTitle>
             </CardHeader>
             <AffiliationBadge affiliation={character.affiliation} size='md' className='absolute right-6 top-6' />
           </div>
@@ -30,22 +30,41 @@ export default function CharacterProfileCard({ character }: { character: Charact
           </CardContent>
 
           <CardContent>
-            <dl className='grid grid-cols-2 gap-6 text-center'>
-              <div className='space-y-1'>
-                <dt className='text-base font-medium text-foreground'>Race</dt>
-                <dd className='text-lg font-semibold text-primary'>{character.race}</dd>
+            <dl className='space-y-8'>
+              {/* Identity stats*/}
+              <div className='grid grid-cols-2 gap-6 text-center'>
+                <div className='space-y-1'>
+                  <dt className='text-base font-medium text-foreground'>Race</dt>
+                  <dd className='text-lg font-semibold text-secondary-foreground'>
+                    {character.race}
+                  </dd>
+                </div>
+
+                <div className='space-y-1'>
+                  <dt className='text-base font-medium text-foreground'>Gender</dt>
+                  <dd className='text-lg font-semibold text-secondary-foreground'>
+                    {character.gender}
+                  </dd>
+                </div>
               </div>
-              <div className='space-y-1'>
-                <dt className='text-base font-medium text-foreground'>Gender</dt>
-                <dd className='text-lg font-semibold text-primary'>{character.gender}</dd>
-              </div>
-              <div className='space-y-1'>
-                <dt className='text-base font-medium text-foreground'>K I</dt>
-                <dd className='text-lg font-semibold text-primary'>{kiDisplay}</dd>
-              </div>
-              <div className='space-y-1'>
-                <dt className='text-base font-medium text-foreground'>Max KI</dt>
-                <dd className='text-lg font-semibold text-primary'>{maxKiDisplay}</dd>
+              {/*Power levels stats */}
+              <div className='space-y-6 text-center'>
+                <div className='space-y-1'>
+                  <dt className='text-base font-medium text-foreground'>KI</dt>
+                  <dd className='text-lg font-semibold text-secondary-foreground'>
+                    {kiDisplay}
+                  </dd>
+                </div>
+
+                <div className='border-t border-border pt-6 space-y-2'>
+                  <dt className='text-base font-medium text-foreground'>
+                    Max KI
+                  </dt>
+
+                  <dd className='text-2xl font-bold text-primary'>
+                    {maxKiDisplay}
+                  </dd>
+                </div>
               </div>
             </dl>
           </CardContent>
@@ -53,9 +72,9 @@ export default function CharacterProfileCard({ character }: { character: Charact
           {character.originPlanet && (
             <CardFooter>
               <div className='w-full space-y-4'>
-                <div className='text-center space-y-2'>
-                  <h3 className='text-base font-medium text-foreground'>Origin Planet</h3>
-                  <p className='text-2xl font-bold text-universe-space'>{character.originPlanet.name}</p>
+                <div className='space-y-2'>
+                  <h2 className='text-base font-medium text-foreground'>Origin Planet</h2>
+                  <p className='text-xl font-semibold text-universe-space'>{character.originPlanet.name}</p>
                 </div>
                 <Button asChild className='bg-secondary border border-universe-space/20 hover:border-universe-space/50'>
                   <Link to={`/planets/${character.originPlanet.id}`} className='inline-flex items-center gap-4'>

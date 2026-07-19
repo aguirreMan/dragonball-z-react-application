@@ -23,12 +23,12 @@ export default function CharacterDescription({ description }: { description: str
       <CardContent>
         <p
           ref={descriptionRef}
-          className={`text-base leading-relaxed m-2 text-muted-foreground ${expandedCharacterDescription ? '' : 'line-clamp-3'}`}
+          className={`text-base leading-relaxed text-muted-foreground ${expandedCharacterDescription ? '' : 'line-clamp-3'}`}
         >
           {description}
         </p>
         {(isOverFlowing || expandedCharacterDescription) && (
-          <Button className='bg-transparent w-50 text-primary border-0 shadow-none p-0 h-auto hover:bg-transparent'
+          <Button className='bg-transparent mt-4 cursor-pointer text-primary border-0 shadow-none p-0 h-auto hover:bg-transparent'
             onClick={() => setExpandedCharacterDescription(prev => !prev)}
           >
             {expandedCharacterDescription ? 'Ver Menos' : 'Leer Más!'}
