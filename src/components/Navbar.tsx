@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router'
 
 const navLinks = [
-  { to: '/', label: 'DBZ Fan Club' },
+  { to: '/', label: 'DBZ' },
   { to: '/characters', label: 'Characters' },
   { to: '/planets', label: 'Planets' },
   { to: '/transformations', label: 'Transformations' },

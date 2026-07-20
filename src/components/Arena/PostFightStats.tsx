@@ -31,7 +31,8 @@ export default function PostFightStats({ left, right, winnerSide, isUpset }: Pos
           animate={{ scale: 1, rotate: -6, opacity: 1 }}
           transition={{ type: 'spring', stiffness: 300, damping: 12, delay: 0.6 }}
         >
-          <span className='rounded-full bg-red-600 px-4 py-1 text-sm font-black uppercase tracking-widest text-white shadow-[0_0_20px_rgba(220,38,38,0.7)]'>
+          <span className='rounded-full bg-destructive px-4 py-1 text-sm font-black uppercase tracking-widest text-foreground
+            shadow-[0_0_20px_rgba(220,38,38,0.7)]'>
             Upset!
           </span>
         </motion.div>
@@ -42,9 +43,6 @@ export default function PostFightStats({ left, right, winnerSide, isUpset }: Pos
         isWinner={winnerSide === 'left'}
         percentage={leftPowerPercentage}
       />
-      <span className='text-primary text-3xl font-black tracking-widest uppercase'>
-        VS
-      </span>
       <PostFightFighter
         side='right'
         character={right}

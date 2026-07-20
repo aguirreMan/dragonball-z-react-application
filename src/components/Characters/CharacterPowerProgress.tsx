@@ -15,7 +15,7 @@ export function CharacterPowerProgress({ percentage }: { percentage: number }) {
   }, [percentage, progress])
 
   return (
-    <Progress.Root className='relative overflow-hidden bg-secondary rounded-full w-full h-6' value={percentage}>
+    <Progress.Root className='relative overflow-hidden bg-secondary rounded-full w-full ring-2 ring-border h-6' value={percentage}>
       <Progress.Indicator asChild>
         <motion.div className='bg-primary h-full' style={{ width: fillProgressBar }} />
       </Progress.Indicator>

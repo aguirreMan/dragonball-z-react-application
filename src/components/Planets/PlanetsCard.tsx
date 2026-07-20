@@ -3,13 +3,32 @@ import { Link } from 'react-router'
 import { motion } from 'motion/react'
 import { Button} from '@/components/shared/Button'
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/shared/Card'
+import { Badge } from '@/components/shared/Badge'
+import { cn } from '@/lib/utils/utils'
+
 
 export default function PlanetsCard({ planet }: { planet: Planets }) {
   return (
     <motion.article whileHover={{ scale: 1.05, y: -5}} transition={{ duration: 0.2 }}>
       <Card>
         <CardHeader>
-          <CardTitle className='text-universe-space'>{planet.name}</CardTitle>
+          <CardTitle className='text-universe-space'>
+            {planet.name}
+          </CardTitle>
+          <Badge
+            variant={planet.isDestroyed ? 'neutral' : 'primary'}
+            size="sm"
+          >
+            <span
+              className={cn(
+                'h-2 w-2 rounded-full',
+                planet.isDestroyed
+                  ? 'bg-destructive'
+                  : 'bg-primary-foreground'
+              )}
+            />
+            {planet.isDestroyed ? "Destroyed" : "Thriving"}
+          </Badge>
         </CardHeader>
         <CardContent>
           <img src={planet.image} alt={planet.name} className='mb-4 h-64 w-full rounded-lg object-cover' />
