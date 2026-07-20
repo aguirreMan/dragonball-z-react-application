@@ -29,7 +29,7 @@ export default function DragonBallArena() {
   }
   return (
     <section className='mx-auto max-w-5xl px-4 py-10 space-y-10'>
-      <h1 className='text-primary text-4xl md:text-5xl font-black text-center tracking-tight'>
+      <h1 className='text-arena-primary text-shadow-arena-glow text-4xl md:text-5xl font-black text-center tracking-tight'>
         Dragon Ball Arena
       </h1>
       <FighterCards
@@ -42,10 +42,8 @@ export default function DragonBallArena() {
         <div className='flex justify-center gap-4'>
           <ArenaController
             phase={arena.phase}
-            winner={arena.winner}
             onStartBattle={battleCoordinator.startFight}
             onSwap={arena.swapCharacters}
-            onReset={resetArena}
           />
         </div>
       )}

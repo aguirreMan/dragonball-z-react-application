@@ -32,6 +32,8 @@
 :root {
   --universe-space: #1e3a8a;
   --transformation-gold: #facc15;
+  --arena-primary: #0c4a6e;
+  --arena-glow: rgba(14,165,233,.35);
 }
 
 .transform-glow {
@@ -53,6 +55,8 @@
     --color-destructive: var(--destructive);
     --color-universe-space: var(--universe-space);
     --color-transformation-gold: var(--transformation-gold);
+    --color-arena-primary: var(--arena-primary);
+    --text-shadow-arena-glow: 0 0 12px var(--arena-glow), 0 0 24px var(--arena-glow);
 
     --color-affiliation-z-fighter: var(--affiliation-z-fighter);
     --color-affiliation-frieza-army: var(--affiliation-frieza-army);
