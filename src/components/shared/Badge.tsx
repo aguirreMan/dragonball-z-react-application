@@ -2,12 +2,13 @@ import React from 'react'
 import { cn } from '@/lib/utils/utils'
 
 type BadgeSizes = 'sm' | 'md' | 'lg'
-type BadgeVariants = 'primary' | 'destructive' | 'neutral'
+type BadgeVariants = 'primary' | 'destructive' | 'neutral' | 'success'
 
 const VariantClasses: Record<BadgeVariants, string> = {
   primary: 'bg-primary text-white',
   destructive: 'bg-destructive text-white',
   neutral: 'bg-secondary text-muted-foreground',
+  success: 'bg-success text-white',
 }
 
 const SizeClasses: Record<BadgeSizes, string> = {

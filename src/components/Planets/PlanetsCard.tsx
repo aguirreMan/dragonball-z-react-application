@@ -4,8 +4,6 @@ import { motion } from 'motion/react'
 import { Button} from '@/components/shared/Button'
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/shared/Card'
 import { Badge } from '@/components/shared/Badge'
-import { cn } from '@/lib/utils/utils'
-
 
 export default function PlanetsCard({ planet }: { planet: Planets }) {
   return (
@@ -16,17 +14,10 @@ export default function PlanetsCard({ planet }: { planet: Planets }) {
             {planet.name}
           </CardTitle>
           <Badge
-            variant={planet.isDestroyed ? 'neutral' : 'primary'}
-            size="sm"
+            variant={planet.isDestroyed ? 'destructive' : 'success'}
+            size='sm'
           >
-            <span
-              className={cn(
-                'h-2 w-2 rounded-full',
-                planet.isDestroyed
-                  ? 'bg-destructive'
-                  : 'bg-primary-foreground'
-              )}
-            />
+            <span className='h-2 w-2 inline-block rounded-full bg-foreground' />
             {planet.isDestroyed ? "Destroyed" : "Thriving"}
           </Badge>
         </CardHeader>

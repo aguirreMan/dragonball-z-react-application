@@ -15,6 +15,7 @@
   --muted: #71717a;
   --muted-foreground: #a1a1aa;
   --destructive: #dc2626;
+  --success:  #4287f5;
 
   /* Fighter affiliations */
    --affiliation-z-fighter: #F59E08;
@@ -54,6 +55,7 @@
     --color-muted: var(--muted);
     --color-muted-foreground: var(--muted-foreground);
     --color-destructive: var(--destructive);
+    --color-success: var(--success);
     --color-universe-space: var(--universe-space);
     --color-transformation-gold: var(--transformation-gold);
     --color-arena-primary: var(--arena-primary);

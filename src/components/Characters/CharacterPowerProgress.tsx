@@ -2,7 +2,7 @@ import * as Progress from '@radix-ui/react-progress'
 import { useEffect } from 'react'
 import { animate, motion, useMotionValue, useTransform } from 'motion/react'
 
-export function CharacterPowerProgress({ percentage }: { percentage: number }) {
+export default function CharacterPowerProgress({ percentage }: { percentage: number }) {
   const progress = useMotionValue(0)
   const fillProgressBar = useTransform(progress, value => `${value}%`)
 
