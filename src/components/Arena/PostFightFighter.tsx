@@ -2,8 +2,8 @@ import type { Character } from '@/types/types'
 import { motion } from 'motion/react'
 import { cn } from '@/lib/utils/utils'
 import { AffiliationBadge } from '@/components/Characters/AffiliationBadge'
-import { CharacterPowerProgress } from '@/components/Characters/CharacterPowerProgress'
 import { formatKiForDisplay } from '@/utils/Kiformatter'
+import CharacterPowerProgress from '@/components/Characters/CharacterPowerProgress'
 
 interface PostFightFighterProps {
   side: 'left' | 'right'

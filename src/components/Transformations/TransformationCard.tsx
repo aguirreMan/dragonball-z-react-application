@@ -1,5 +1,5 @@
 import type { Transformations } from '@/types/types'
-import { CharacterPowerProgress } from '@/components/Characters/CharacterPowerProgress'
+import CharacterPowerProgress from '@/components/Characters/CharacterPowerProgress'
 import { parseKi, calculatePowerScalePercentage, formatKiForDisplay, formatPowerLevelsDisplay } from '@/utils/Kiformatter'
 
 export default function TransformationCard({ transformation, maxKi }: { transformation: Transformations; maxKi: bigint }) {
